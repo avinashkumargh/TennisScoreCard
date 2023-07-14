@@ -1,5 +1,7 @@
 document.addEventListener('keypress', scoreUpdate);
+display = document.getElementById("main-info");
 
+//update players names... Somehow
 
 let player1 = {
     name: document.getElementById("player-1-name"),
@@ -25,11 +27,18 @@ let tieBreakCounter = 1;
 
 function scoreUpdate(e) {
     console.log(e);
-    if (e.key == "1") {
+    if (e == "1") {
         inc_points(player1, player2);
     }
-    if (e.key == "2") {
+    if (e == "2") {
         inc_points(player2, player1);
+    }
+
+    if (checkServe(player1)){
+        mapScore(player1, player2);
+    }
+    else{
+        mapScore(player2, player1);
     }
 }
 
@@ -156,3 +165,16 @@ function inc_games(player_1, player_2){
 }
 
 
+function mapScore(player_1, player_2){
+    /* display.innerHTML = player_1.name.innerHTML+ "▶ " + player_1.points.innerHTML+ " : " + player_2.points.innerHTML; */
+    const parentDiv = document.querySelector('.points-display');
+    const divInfoWrapper = document.createElement("div");
+    divInfoWrapper.setAttribute("class", "info-wrapper");
+    const divInfo = document.createElement("div");
+    divInfo.setAttribute("class", "info");
+    divInfo.setAttribute("id", "main-info");
+
+    divInfo.innerHTML = player_1.name.innerHTML+ "▶ " + player_1.points.innerHTML+ " : " + player_2.points.innerHTML;
+    divInfoWrapper.appendChild(divInfo);
+    parentDiv.prepend(divInfoWrapper);
+}
