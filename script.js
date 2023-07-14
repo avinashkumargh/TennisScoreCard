@@ -1,4 +1,4 @@
-document.addEventListener('keypress', scoreUpdate);
+//document.addEventListener('keypress', scoreUpdate);
 display = document.getElementById("main-info");
 
 //update players names... Somehow
